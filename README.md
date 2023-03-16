@@ -1,214 +1,252 @@
-# Keep Talking and Nobody Explodes BOT
+# Keep Talking and Nobody Explodes Assistant
 
-Using C# default [Speech Recognition Engine](https://docs.microsoft.com/en-us/dotnet/api/system.speech.recognition.speechrecognitionengine?view=netframework-4.8) and C# [Speech Synthesis](https://docs.microsoft.com/en-us/dotnet/api/system.speech.synthesis.speechsynthesizer?view=netframework-4.8), I made a bot that emulates the manual of the video game Keep Talking and Nobody Explodes.
-All modules can be solved using the bot, using the right key-words.
+An assistant to help you defuse modules for the game [Keep Talking and Nobody Explodes](https://keeptalkinggame.com/) using [Speech Recognition](https://docs.microsoft.com/en-us/dotnet/api/system.speech.recognition.speechrecognitionengine) and [Speech Synthesis](https://docs.microsoft.com/en-us/dotnet/api/system.speech.synthesis.speechsynthesizer).
 
-### Before you give it a go, make sure that...
+## Before you give it a go, make sure that:
 
 + **You are using your default microphone.** The program automatically sets the input to your default audio input device.
 + **You have installed voices for English.** Microsoft David and Microsoft Zira should appear by default. If they don't, then you might not have installed voice for English.
 + **You are using headphones.** You can use speakers too, but you might want to lower the volume, as it might interfere with the audio inputs (the bot can hear itself).
 + **You try different english accents.** This is not my fault. I rarely struggle with my Greek accent, but I haven't tried other accents.
 
-<br>
-You can use the following keywords as they're explained below, in order to disarm any bomb. 
-<br> <br>
+## Reasons for forking
+
++ Switch to a modern version of .NET
++ Rewrite core to allow for easier extendability
++ Replace "bomb check" to account for setup mistakes
++ Streamline input grammar
++ Speed up the input of some modules
 
 ## Initializing the Bomb's Properties
 
-#### Key-Word: BOMB CHECK
+Before defusing any module, you must first configure the bomb state. The properties that matter are:
 
-**Before defusing any module, you must first tell the bot the bomb properties, by saying "Bomb Check"**. Not all, though. Only the ones that matter. The properties that matter are:
+| Property                            | Voice Command                                                       |
+|-------------------------------------|---------------------------------------------------------------------|
+| Number of batteries                 | Set batteries <0-6 \| none \| more than two>                        |
+| CAR indicator                       | Set car <yes \| no \| true \| false \| lit \| unlit \| on \| off>   |
+| FRK indicator                       | Set freak <yes \| no \| true \| false \| lit \| unlit \| on \| off> |
+| Parallel port                       | Set port <yes \| no \| true \| false \| lit \| unlit \| on \| off>  |
+| Vowel in serial number              | Set vowel <yes \| no \| true \| false \| lit \| unlit \| on \| off> |
+| Last digit of serial number is even | Set digit <even \| odd>                                             |
 
-+ A lit FRK indicator.
-+ A lit CAR indicator.
-+ The presence of a parallel port.
-+ The presence of any vowel in the serial number.
-+ The last digit of the serial number (even/odd).
-+ The number of batteries.
+These properties can be changed at any time once the assistant has been set up along with:
 
-The above affect several modules. So after you say bomb check, say the following:
+| Property                            | Voice Command     |
+|-------------------------------------|-------------------|
+| Strikes                             | Set strikes <0-2> |
 
-+ Freak <yes|true|no|false>. (E.g., say "Freak yes" if there is a lit FRK label)
-+ Car <yes|true|no|false>.
-+ Port <yes|true|no|false>.
-+ Vowel <yes|true|no|false>.
-+ Digit <even|odd>.
-+ Batteries <0-6|none|more than two>. (If there are more than two batteries, it's better to say "Batteries more than two")
+You can also skip this section if you want, by clicking the **"Random Bomb"** button.
+This button will initialize a bomb with completely random properties.
+This is likely to be useful, if you want to disarm a module that has nothing to do with the bomb's properties (e.g. Keypad or Memory).
 
-You can also skip this section if you want, by clicking the **"Random Bomb"** button. This button will initialize a bomb with completely random properties. This is likely to be useful, if you want to disarm a module that has nothing to do with the bomb's properties (E.g. The Symbols, or Memory).
+## Modules
 
-<br>
+![Example Complicated](https://static.wikia.nocookie.net/ktane/images/a/a5/Complicated_Wires.jpg/revision/latest)
 
-## The Button
+### Complicated Wires (*"Defuse Complicated"*)
 
-#### Key-Word: DEFUSE BUTTON
+After stating the wire's colors, you must say if there is any indicator afterwards (a light and/or a star or nothing).
 
-The button is fairily simple. You just state the button color and then the label as it is written. If the BOT tells you to hold the button until the stripe strikes, you recite the color of the stripe and then the word "stripe".
+Example:
 
-E.g.: **Red Detonate** or **White Stripe**.
++ **"White Star"**
++ **"White Star"**
++ **"Blue Light"**
++ **"Blue and White Light"**
++ **"Red Light"**
++ **"Blue and White Nothing"**
 
-<br>
+---
 
-## Simple Wires
+![Example Keypad](https://static.wikia.nocookie.net/ktane/images/6/6f/Keypad.png/revision/latest)
 
-#### Key-Word: DEFUSE WIRES
+### Keypad (*"Defuse Keypad"*)
 
-The simple wires are also simple. You state just the color of the wire, then you wait until the bot repeats the color and says "next".
-Unless the number of the wires is exactly six, you have to say "done" when there are no wires left. Then the bot will tell you the index of the wire you have to cut.
+State the symbols in any order. **After you state a symbol, wait until the assistant repeats it and says "next".**
 
-E.g. **Cut the n-th wire** or **Cut the last wire**.
+Example:
 
-<br>
++ **"Lambda"**
++ **"Kitty"**
++ **"At"**
++ **"Reverse C"**
 
-## Wire Sequence
+#### Symbols
 
-#### Key-Word: DEFUSE SEQUENCE
+| | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| ![][keypad:balloon] | ![][keypad:euro] | ![][keypad:copyright] | ![][keypad:six] | ![][keypad:pitchfork] | ![][keypad:six] |
+| Balloon | Euro | Copyright | Six | Pitchfork | Six |
+| ![][keypad:at] | ![][keypad:balloon] | ![][keypad:pumpkin] | ![][keypad:paragraph] | ![][keypad:smileyface] | ![][keypad:euro] |
+| At | Balloon | Pumpkin | Paragraph | Smiley face | Euro |
+| ![][keypad:lambda] | ![][keypad:reversec] | ![][keypad:pigtail] | ![][keypad:bt] | ![][keypad:bt] | ![][keypad:puzzle] |
+| Lambda | Reverse C | Pigtail | Bt | Bt | Puzzle |
+| ![][keypad:lightning] | ![][keypad:pigtail] | ![][keypad:doublek] | ![][keypad:kitty] | ![][keypad:c] | ![][keypad:ash] |
+| Lightning | Pigtail | Double K | Kitty | C | Ash |
+| ![][keypad:kitty] | ![][keypad:emptystar] | ![][keypad:three] | ![][keypad:doublek] | ![][keypad:paragraph] | ![][keypad:pitchfork] |
+| Kitty | Empty star | Three | Double K | Paragraph | Pitchfork |
+| ![][keypad:curlyh] | ![][keypad:curlyh] | ![][keypad:lambda] | ![][keypad:questionmark] | ![][keypad:dragon] | ![][keypad:reversen] |
+| Curly H | Curly H | Lambda | Question mark | Dragon | Reverse N |
+| ![][keypad:reversec] | ![][keypad:questionmark] | ![][keypad:emptystar] | ![][keypad:smileyface] | ![][keypad:fullstar] | ![][keypad:omega] |
+| Reverse C | Question mark | Empty star | Smiley face | Full star | Omega |
 
-This module is also simple. You state the color of the wire and then the letter that it's connected to. The letter can either be A, B or C. Instead of A, B or C, you must say Alpha, Bravo or Charlie accoordingly.
+---
 
-E.g.: **Blue Bravo** or **Black Charlie**.
+![Example Maze](https://static.wikia.nocookie.net/ktane/images/a/af/ModuleMaze.jpg/revision/latest)
 
-<br>
+### Maze (*"Defuse Maze"*)
 
-## Complicated Wires
+First, state the coordinates (column,row) of any of the green circles, then the white square and then the red triangle.
+(1,1) is the top left corner, (6,6) the bottom right corner.
+After that, using BFS, the assistant will tell you which path to follow (Up, Down, etc.).
 
-#### Key-Word: DEFUSE COMPLICATED
+Example:
 
-This module is really complicated for a human to solve, but fairily easy for a BOT. After stating the wire's colors, you must say if there is any indicator afterwards (a light or a star). If there is none, you just say "nothing". The BOT will respond with a "yes" or a "no", depending wether the wire must be cut or not.
++ **"1 1"** or **"4 1"**
++ **"1 1"**
++ **"3 2"**
 
-E.g.: **"Red and White, Nothing" or "Blue, Star" or "Blue and White, Star and Light"**.
+---
 
-<br>
+![Example Memory](https://static.wikia.nocookie.net/ktane/images/5/55/Memory.jpg/revision/latest/scale-to-width-down/225)
 
-## Memory
+### Memory (*"Defuse Memory"*)
 
-#### Key-Word: DEFUSE MEMORY
+State all five numbers that you see, starting with the display and then going sequentially left-to-right.
 
-The Memory module is really straight forward. After saying the word "Numbers", state all five numbers that you see, starting from the display and then going sequentially left-to-right. Be sure to be moderately fast and clear as you state the numbers. A small misspell and it might not understand you. If it doesn't understand you, it will tell you to repeat the numbers that you see.
+Example:
 
-E.g.: **"Numbers one, four, one, two, three".**
++ **"4 2 4 3 1"**
 
-After stating the numbers, the bot will tell you which button to press.
+---
 
-E.g.: **"Press three".**
-
-<br>
-
-## Simon Says
-
-#### Key-Word: DEFUSE SIMON
-
-Some of you don't even need this, especially when there's a vowel. Each round, the ***only*** thing you have to say is **the color that flashes** ***last***.
-E.g.: "**red.**"
-
-Then, the bot will respond with the rest of the colors that you have to press.
-E.g.: "**press blue, red, red, yellow**."
-
-If the bomb has one or more strikes, at any time, you can say "Strikes \<number of strikes>".
-E.g.: "**Strikes 1**."
+![Example Morse](https://static.wikia.nocookie.net/ktane/images/e/ee/Morse_Code.jpg/revision/latest)
   
-<br>
-  
-## Morse
+### Morse Code (*"Defuse Morse"*)
 
-#### Key-Word: DEFUSE MORSE
+Starting from the first letter, the assistant will sequentially ask you to state the morse code with dots/shorts and dashes/longs.
 
-You have to be patient in this one. Starting from the first letter, the bot will sequentially ask you to state the morse code with zeros and ones (**0 is the dot and 1 is the dash**). Once you state one letter, you will state the next one. Usually, you find the word in the third letter.
+---
 
-E.g.: **"zero zero zero"**. (Accoording to Morse Code this is the letter 's')
+![Example Password](https://static.wikia.nocookie.net/ktane/images/6/64/Password.jpg/revision/latest/scale-to-width-down/225)
 
-After the BOT has identified the word, it will tell you which word it is and at what frequency you tune the radio to.
+### Password (*"Defuse Password"*)
 
-<br>
+For each column the assistant asks for, state all 6 letters by saying the letter itself or by using the [military alphabet](https://en.wikipedia.org/wiki/NATO_phonetic_alphabet).
 
-## The Maze
+---
 
-#### Key-Word: DEFUSE MAZE
+![Example Simon](https://static.wikia.nocookie.net/ktane/images/9/90/Simon.png/revision/latest)
 
-I promise this is easy. The only thing you have to recite, are the coordinates. First, state the coordinates of any of the green circles. Then the white square and then the triangle.
+### Simon Says (*"Defuse Simon"*)
 
-E.g. "**one two**".
+State the color that flashes **last**.
 
-After that, using BFS, the BOT will tell you which path to follow (Down, Up, etc.). If the bot tells you that there is no path found, then something must be wrong with the circle coordinates.
+---
 
-### How to specify the coordinates:
+![Example Button](https://static.wikia.nocookie.net/ktane/images/c/cf/Button.png/revision/latest)
 
-![sample maze](https://raw.githubusercontent.com/cpuSonicatt/KTaNE-Bomb-Expert/HEAD/resources/mazeexample.png)
+### The Button (*"Defuse Button"*)
 
-First is line **THEN** column. For example:
+State the button color and then the label.
+If the button needs to be held, state the color of the stripe and then the word "stripe".
 
-+ the first circle's coordinates are **1, 5**.
-+ the second circle's coordinates are **5, 3**.
-+ the white square's coordinates are **4, 6**.
-+ the red triangle's coordinates are **5, 1**.
+Example:
 
-<br>
++ **"White Hold"**
++ **"Yellow Stripe"**
 
-## The Password
+---
 
-#### Key-Word: DEFUSE PASSWORD
+![Example WIOF](https://static.wikia.nocookie.net/ktane/images/9/92/Who%27s_on_First.png/revision/latest)
 
-For each column, tell the bot the letter you see, either by saying the letter itself (I do not recommend this), or by using the [military alphabet](https://www.wikiwand.com/en/NATO_phonetic_alphabet#:~:text=The%2026%20code%20words%20are,%2Dray%2C%20Yankee%2C%20Zulu.). For each letter, wait until the BOT repeats it and says "next".
+### Who's On First (*"Defuse Who Is On First"*)
 
-E.g.: "**Yankee**" or "**Y**".
-
-If the bot finds at most five possible words, it will tell you to try one of them. Otherwise, after the first column, the bot will ask for the letters from the next column.
-
-<br>
-
-## Keypad
-
-#### Key-Word: DEFUSE SYMBOLS
-
-Just like Simon Says, there's also a group of people that just memorize the symbols. But if you can't memorize, you have to tell the bot sequentially the symbols you see. **After you state a symbol, wait until the bot repeats it and says "next".** Thereafter naming all four symbols, the bot should say the right order for you to press.
-
-I've named the symbols after what I thought was more obvious. You can take a look at the [Text Document](https://github.com/GeorgeMC2610/KTANE-Bot/blob/master/bin/Debug/Symbols.txt) the program reads to identify the words. Otherwise here are the names:
-
-![symbols](https://github.com/GeorgeMC2610/KTANE-Bot/blob/master/SYMBOLS.jpg)
-
-<br>
-
-## Who's On First
-
-#### Key-Word: DEFUSE WHO IS ON FIRST
-
-I've tried to make the *Who's on First* module as simple as I possibly could. You shall say all words as they're written except:
+Say all words as you normally would except:
 
 + [when the display is blank] → **"it is blank"**
++ C → **"c letter"**
++ CEE → **"charlie echo echo"**
++ LEED → **"el ee ee dee"**
 + READ → **"read noun"**
 + RED → "**red color"**
 + REED → **"ar ee ee dee"**
-+ LEED → **"el ee ee dee"**
-+ YOUR → **"your pronoun"**
-+ YOU'RE → **"you're apostrophe"**
-+ UR → **"u r letters"**
-+ THEY'RE → **"they're apostrophe"**
 + THEIR → **"their pronoun"**
-+ C → **"c letter"**
-+ CEE → **"charlie echo echo"**
-+ UHHH → **"u h h h" (spell the letters)**
++ THEY'RE → **"they're apostrophe"**
 + U → **"u letter"**
 + UH HUH → **"u h space h u h"**
 + UH UH → **"u h space u h"**
++ UHHH → **"u h h h" (spell the letters)**
++ UR → **"u r letters"**
 + WHAT? → **"what questionmark"**
++ YOU'RE → **"you're apostrophe"**
++ YOUR → **"your pronoun"**
 
-<br>
+Example:
 
-## The Knob
++ **"Nothing"**
 
-#### Key-Word: DEFUSE KNOB
+---
 
-The knob is by far the easiest one. Using "0" for unlit and "1" for lit, spell the six lights that you see (three on the upper left and three on lower left).
+![Example Sequence](https://static.wikia.nocookie.net/ktane/images/2/23/Wire_Sequence.jpg/revision/latest)
 
-For example, for the following knob, you should say: "**0 1 1 space 1 1 1**". 
+### Wire Sequence (*"Defuse Sequence"*)
 
-![knob](https://static.wikia.nocookie.net/ktane/images/9/95/NeedyKnob_Manual2_down2.png/revision/latest/scale-to-width-down/285?cb=20201002195717)
+State the color of the wire and then the letter that it's connected to.
+The letter has to be pronounced as "Alpha", "Bravo" or "Charlie".
 
-The BOT will respond with the corresponding position the indicator should be turned.
+Example:
 
-<br><br>
++ **"Blue Alpha"**
++ **"Blue Charlie"**
 
-#
+---
 
-### Thanks for reading. Have fun!
+![Example Wires](https://static.wikia.nocookie.net/ktane/images/3/39/Wires.png/revision/latest)
+
+### Wires (*"Defuse Wires"*)
+
+State the colors of the wires, from top to bottom, followed by "done".
+
+Example: **"Yellow White Red Black Done"**
+
+## Needy Modules
+
+![Example Knob](https://static.wikia.nocookie.net/ktane/images/9/95/NeedyKnob_Manual2_down2.png/revision/latest/scale-to-width-down/225)
+
+### The Knob (*"Defuse Knob"*)
+
+Using "off" for unlit and "on" for lit, spell the six lights that you see (three on the upper left and three on lower left).
+
+Example:
+
++ **"off on on on on on"**
+
+[keypad:balloon]: resources/balloon.png "balloon"
+[keypad:at]: resources/at.png "at"
+[keypad:lambda]: resources/lambda.png "lambda"
+[keypad:lightning]: resources/lightning.png "lightning"
+[keypad:kitty]: resources/kitty.png "kitty"
+[keypad:curlyh]: resources/curlyh.png "curlyh"
+[keypad:reversec]: resources/reversec.png "reversec"
+[keypad:euro]: resources/euro.png "euro"
+[keypad:pigtail]: resources/pigtail.png "pigtail"
+[keypad:emptystar]: resources/emptystar.png "emptystar"
+[keypad:questionmark]: resources/questionmark.png "questionmark"
+[keypad:copyright]: resources/copyright.png "copyright"
+[keypad:pumpkin]: resources/pumpkin.png "pumpkin"
+[keypad:doublek]: resources/doublek.png "doublek"
+[keypad:three]: resources/three.png "three"
+[keypad:six]: resources/six.png "six"
+[keypad:paragraph]: resources/paragraph.png "paragraph"
+[keypad:bt]: resources/bt.png "bt"
+[keypad:smileyface]: resources/smileyface.png "smileyface"
+[keypad:pitchfork]: resources/pitchfork.png "pitchfork"
+[keypad:c]: resources/c.png "c"
+[keypad:dragon]: resources/dragon.png "dragon"
+[keypad:fullstar]: resources/fullstar.png "fullstar"
+[keypad:puzzle]: resources/puzzle.png "puzzle"
+[keypad:ash]: resources/ash.png "ash"
+[keypad:reversen]: resources/reversen.png "reversen"
+[keypad:omega]: resources/omega.png "omega"
