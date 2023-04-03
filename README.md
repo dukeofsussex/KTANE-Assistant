@@ -12,7 +12,7 @@ An assistant to help you defuse modules for the game [Keep Talking and Nobody Ex
 ## Reasons for forking
 
 + Switch to a modern version of .NET
-+ Rewrite core to allow for easier extendability
++ Rewrite core to allow for easier extensibility
 + Replace "bomb check" to account for setup mistakes
 + Streamline input grammar
 + Speed up the input of some modules
