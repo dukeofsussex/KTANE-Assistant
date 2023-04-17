@@ -5,7 +5,7 @@ namespace KTANE.Game.Modules
 
     internal class ComplexWires : BombModule
     {
-        public override string Name => "Complicated";
+        public override string Name => "Complicated Wires";
 
         public override string Help => "<THE COLORS OF THE WIRE> + <nothing|star|light|star and light>";
 
