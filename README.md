@@ -133,7 +133,7 @@ Starting from the first letter, the assistant will sequentially ask you to state
 
 ### Password (*"Defuse Password"*)
 
-For each column the assistant asks for, state all 6 letters by saying the letter itself or by using the [military alphabet](https://en.wikipedia.org/wiki/NATO_phonetic_alphabet).
+For each column the assistant asks for, state all 6 letters by using the [military alphabet](https://en.wikipedia.org/wiki/NATO_phonetic_alphabet).
 
 ---
 

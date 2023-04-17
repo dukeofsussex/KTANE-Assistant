@@ -52,38 +52,12 @@ namespace KTANE.Game.Modules
 
         public override string Name => "Password";
 
-        public override string Help => "<military alphabet|regular alphabet, 6 times>";
+        public override string Help => "<military alphabet, 6 times>";
 
         public override string PreInfo => $", column {this.Column + 1}.";
 
         public override GrammarBuilder Grammar => new (
             new Choices(
-                "A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H",
-                "I",
-                "J",
-                "K",
-                "L",
-                "M",
-                "N",
-                "O",
-                "P",
-                "Q",
-                "R",
-                "S",
-                "T",
-                "U",
-                "V",
-                "W",
-                "X",
-                "Y",
-                "Z",
                 "ALPHA",
                 "BRAVO",
                 "CHARLIE",
@@ -107,7 +81,7 @@ namespace KTANE.Game.Modules
                 "UNIFORM",
                 "VICTOR",
                 "WHISKEY",
-                "X RAY",
+                "X-RAY",
                 "YANKEE",
                 "ZULU"),
             6,
