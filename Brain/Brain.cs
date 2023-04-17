@@ -52,14 +52,7 @@ namespace KTANE.Brain
                 return this.ProcessModule(command, bomb);
             }
 
-            message = this.processors[result.Grammar.Name].Process(command, bomb);
-
-            if (bomb.ActiveModule != null)
-            {
-                bomb.ActiveModule = null;
-            }
-
-            return message;
+            return this.processors[result.Grammar.Name].Process(command, bomb);
         }
 
         public void Toggle(bool state)
