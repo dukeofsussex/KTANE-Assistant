@@ -8,16 +8,6 @@ namespace KTANE.Game.Modules
 
     internal partial class Morse : BombModule
     {
-        private readonly List<string> callerDict = new ()
-        {
-            { "first" },
-            { "second" },
-            { "third" },
-            { "fourth" },
-            { "fifth" },
-            { "sixth" },
-        };
-
         private readonly Dictionary<string, char> morseCodes = new ()
         {
             { "01", 'a' },
@@ -100,7 +90,7 @@ namespace KTANE.Game.Modules
 
             return possibleWords.Count == 1
                 ? $"Word \"{possibleWords[0]}\", set freq to {this.words[possibleWords[0]]} mega hertz."
-                : $"{this.callerDict[this.letters.Count]} letter?";
+                : $"{this.DigitToWord(this.letters.Count)} letter?";
         }
 
         [GeneratedRegex("(dot|short)", RegexOptions.Compiled)]

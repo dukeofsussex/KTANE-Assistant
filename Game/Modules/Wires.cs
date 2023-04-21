@@ -1,21 +1,10 @@
 namespace KTANE.Game.Modules
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Speech.Recognition;
 
     internal class Wires : BombModule
     {
-        private readonly Dictionary<int, string> indexingDict = new ()
-        {
-            { 1, "first" },
-            { 2, "second" },
-            { 3, "third" },
-            { 4, "fourth" },
-            { 5, "fifth" },
-            { 6, "sixth" },
-        };
-
         public override string Name => "Wires";
 
         public override string Help => "<color, 3-6 times> done";
@@ -49,11 +38,11 @@ namespace KTANE.Game.Modules
                 return $"You must give at least 3 wires. ({wires.Length} given)";
             }
 
-            int redWires = (from wire in wires where wire == "red" select wire).Count();
-            int whiteWires = (from wire in wires where wire == "white" select wire).Count();
-            int blackWires = (from wire in wires where wire == "black" select wire).Count();
-            int yellowWires = (from wire in wires where wire == "yellow" select wire).Count();
-            int blueWires = (from wire in wires where wire == "blue" select wire).Count();
+            int redWires = wires.Where(w => w == "red").Count();
+            int whiteWires = wires.Where(w => w == "white").Count();
+            int blackWires = wires.Where(w => w == "black").Count();
+            int yellowWires = wires.Where(w => w == "yellow").Count();
+            int blueWires = wires.Where(w => w == "blue").Count();
 
             int index = 0;
 
@@ -135,12 +124,7 @@ namespace KTANE.Game.Modules
                     break;
             }
 
-            return $"Cut the {this.IndexToWords(index, wires.Length)} wire.";
-        }
-
-        private string IndexToWords(int index, int count)
-        {
-            return index == count ? "last" : this.indexingDict[index];
+            return $"Cut the {(index == wires.Length ? "last" : this.DigitToWord(index - 1))} wire.";
         }
     }
 }
