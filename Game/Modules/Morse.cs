@@ -89,7 +89,7 @@ namespace KTANE.Game.Modules
             }
 
             return possibleWords.Count == 1
-                ? $"Word \"{possibleWords[0]}\", set freq to {this.words[possibleWords[0]]} mega hertz."
+                ? $"Set freq to {this.words[possibleWords[0]]} mega hertz, word is \"{possibleWords[0]}\"."
                 : $"{this.DigitToWord(this.letters.Count)} letter?";
         }
 
