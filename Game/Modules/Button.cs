@@ -36,6 +36,7 @@ namespace KTANE.Game.Modules
 
         public override string PreInfo => string.Empty;
 
+        [RequiredBombSetting(nameof(Bomb.Batteries), nameof(Bomb.HasLitCAR), nameof(Bomb.HasLitFRK))]
         public override string Process(string command, Bomb bomb)
         {
             string[] parts = command.Split(' ');

@@ -152,7 +152,7 @@ namespace KTANE
             this.groupBoxBombState.Size = new System.Drawing.Size(256, 201);
             this.groupBoxBombState.TabIndex = 0;
             this.groupBoxBombState.TabStop = false;
-            this.groupBoxBombState.Text = "Bomb State";
+            this.groupBoxBombState.Text = "Bomb Settings";
             // 
             // labelStrikes
             // 
@@ -270,7 +270,7 @@ namespace KTANE
             this.labelVoice.Location = new System.Drawing.Point(7, 56);
             this.labelVoice.Margin = new Padding(4, 0, 4, 0);
             this.labelVoice.Name = "labelVoice";
-            this.labelVoice.Size = new System.Drawing.Size(51, 13);
+            this.labelVoice.Size = new System.Drawing.Size(37, 13);
             this.labelVoice.TabIndex = 9;
             this.labelVoice.Text = "Voice:";
             this.labelVoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

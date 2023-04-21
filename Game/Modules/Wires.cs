@@ -23,6 +23,7 @@ namespace KTANE.Game.Modules
             }
         }
 
+        [RequiredBombSetting(nameof(Bomb.LastDigitEven))]
         public override string Process(string command, Bomb bomb)
         {
             string[] wires = command.Split(' ');

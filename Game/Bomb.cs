@@ -2,6 +2,7 @@ namespace KTANE.Game
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Speech.Recognition;
     using KTANE.Brain;
@@ -25,16 +26,22 @@ namespace KTANE.Game
 
         public bool AutoReset { get; set; }
 
+        [DisplayName("Batteries")]
         public int? Batteries { get; set; }
 
+        [DisplayName("Parallel Port")]
         public bool? HasParallelPort { get; set; }
 
+        [DisplayName("FRK")]
         public bool? HasLitFRK { get; set; }
 
+        [DisplayName("CAR")]
         public bool? HasLitCAR { get; set; }
 
+        [DisplayName("Vowel")]
         public bool? HasVowel { get; set; }
 
+        [DisplayName("Last Digit")]
         public bool? LastDigitEven { get; set; }
 
         public int Strikes { get; set; }
@@ -82,10 +89,6 @@ namespace KTANE.Game
                 return new Choices(new GrammarBuilder[] { battery, parallelPort, frk, car, vowel, digit, strikes, defused, exploded });
             }
         }
-
-        public bool Ready => typeof(Bomb).GetProperties()
-            .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-            .All(p => p.GetValue(this) != null);
 
         public static Bomb CreateRandom()
         {

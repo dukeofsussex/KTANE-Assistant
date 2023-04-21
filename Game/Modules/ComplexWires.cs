@@ -46,6 +46,7 @@ namespace KTANE.Game.Modules
             }
         }
 
+        [RequiredBombSetting(nameof(Bomb.Batteries), nameof(Bomb.HasParallelPort), nameof(Bomb.LastDigitEven))]
         public override string Process(string command, Bomb bomb)
         {
             bool red = command.Contains("red");

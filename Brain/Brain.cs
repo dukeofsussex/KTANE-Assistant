@@ -145,11 +145,6 @@ namespace KTANE.Brain
 
         private string ProcessModule(string command, Bomb bomb)
         {
-            if (!bomb.Ready)
-            {
-                return "Bomb not set up.";
-            }
-
             string module = command[(command.IndexOf(' ') + 1) ..].ToUpperInvariant();
 
             if (bomb.ActiveModule != null)
@@ -157,15 +152,20 @@ namespace KTANE.Brain
                 this.ResetProcessors();
             }
 
-            SpeechProcessor speechModule = this.processors[module];
+            BombModule bombModule = this.processors[module] as BombModule;
 
-            if (!speechModule.IsGlobal)
+            if (!bombModule.IsGlobal)
             {
-                speechModule = Activator.CreateInstance(this.processors[module].GetType()) as SpeechProcessor;
-                this.processors[module] = speechModule;
+                bombModule = Activator.CreateInstance(this.processors[module].GetType()) as BombModule;
+                this.processors[module] = bombModule;
+
+                if (!bombModule.TryDefuse(bomb, out string response))
+                {
+                    return response;
+                }
             }
 
-            bomb.ActiveModule = speechModule as BombModule;
+            bomb.ActiveModule = bombModule;
             this.Recognition.Grammars.Where(g => g.Name == module)
                 .First()
                 .Enabled = true;
