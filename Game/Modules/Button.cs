@@ -44,16 +44,16 @@ namespace KTANE.Game.Modules
 
             if (command.EndsWith("stripe"))
             {
-                return this.SolveStripe();
+                if (this.color == "blue")
+                {
+                    return "Release at four.";
+                }
+
+                return this.color == "yellow" ? "Release at five." : "Release at one.";
             }
 
             this.label = parts[1].ToLowerInvariant();
 
-            return this.Solve(bomb);
-        }
-
-        private string Solve(Bomb bomb)
-        {
             if (this.color == "blue" && this.label == "abort")
             {
                 return Hold;
@@ -75,16 +75,6 @@ namespace KTANE.Game.Modules
             }
 
             return this.color == "red" && this.label == "hold" ? Press : Hold;
-        }
-
-        private string SolveStripe()
-        {
-            if (this.color == "blue")
-            {
-                return "Release at four.";
-            }
-
-            return this.color == "yellow" ? "Release at five." : "Release at one.";
         }
     }
 }
