@@ -15,9 +15,6 @@
     <NoWarn>1701;1702;CA1416;SA1600;SA1633</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Speech" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
