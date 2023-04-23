@@ -140,11 +140,11 @@ namespace KTANE.Game.Modules
             },
         };
 
-        private Point squareLocation;
+        private Point? squareLocation;
 
         private char[,] targetMaze;
 
-        private Point triangleLocation;
+        private Point? triangleLocation;
 
         private bool solved;
 
@@ -185,7 +185,7 @@ namespace KTANE.Game.Modules
                 return "Invalid circle coordinates.";
             }
 
-            if (this.squareLocation.IsEmpty)
+            if (!this.squareLocation.HasValue)
             {
                 this.squareLocation = new Point(x, y);
                 return "Triangle coordinates?";
@@ -193,12 +193,13 @@ namespace KTANE.Game.Modules
 
             this.triangleLocation = new Point(x, y);
 
-            if (this.triangleLocation.X == this.squareLocation.X && this.triangleLocation.Y == this.squareLocation.Y)
+            if (this.triangleLocation.Value.X == this.squareLocation.Value.X && this.triangleLocation.Value.Y == this.squareLocation.Value.Y)
             {
+                this.squareLocation = new Point(0, 0);
                 return "Square and triangle must be in different places.";
             }
 
-            List<string> directions = this.Solve(this.squareLocation.X, this.squareLocation.Y, new List<string>());
+            List<string> directions = this.Solve(this.squareLocation.Value.X, this.squareLocation.Value.Y, new List<string>());
 
             if (directions.Count > 0)
             {
@@ -210,7 +211,7 @@ namespace KTANE.Game.Modules
 
         private List<string> Solve(int x, int y, List<string> currentPath, string direction = null)
         {
-            if (x == this.triangleLocation.X && y == this.triangleLocation.Y)
+            if (x == this.triangleLocation.Value.X && y == this.triangleLocation.Value.Y)
             {
                 this.solved = true;
             }
