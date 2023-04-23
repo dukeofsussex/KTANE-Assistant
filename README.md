@@ -163,25 +163,7 @@ Example:
 
 ### Who's On First (*"Defuse Who Is On First"*)
 
-Say all words as you normally would except:
-
-+ [when the display is blank] → **"it is blank"**
-+ C → **"c letter"**
-+ CEE → **"charlie echo echo"**
-+ LEED → **"el ee ee dee"**
-+ READ → **"read noun"**
-+ RED → "**red color"**
-+ REED → **"ar ee ee dee"**
-+ THEIR → **"their pronoun"**
-+ THEY'RE → **"they're apostrophe"**
-+ U → **"u letter"**
-+ UH HUH → **"u h space h u h"**
-+ UH UH → **"u h space u h"**
-+ UHHH → **"u h h h" (spell the letters)**
-+ UR → **"u r letters"**
-+ WHAT? → **"what questionmark"**
-+ YOU'RE → **"you're apostrophe"**
-+ YOUR → **"your pronoun"**
+Say all words as you normally would except those stated by the assistant.
 
 Example:
 
