@@ -111,7 +111,7 @@ namespace KTANE.Game.Modules
 
             List<string> output = this.symbols.OrderBy(column.IndexOf).ToList();
 
-            return $"First is {output[0]}, then {output[1]}, then {output[2]}, then {output[3]}.";
+            return $"{string.Join(", ", output)}.";
         }
     }
 }
