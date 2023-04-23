@@ -29,7 +29,7 @@ namespace KTANE.Game
         [DisplayName("Batteries")]
         public int? Batteries { get; set; }
 
-        [DisplayName("Parallel Port")]
+        [DisplayName("Port")]
         public bool? HasParallelPort { get; set; }
 
         [DisplayName("FRK")]
@@ -41,7 +41,7 @@ namespace KTANE.Game
         [DisplayName("Vowel")]
         public bool? HasVowel { get; set; }
 
-        [DisplayName("Last Digit")]
+        [DisplayName("Digit")]
         public bool? LastDigitEven { get; set; }
 
         public int Strikes { get; set; }
