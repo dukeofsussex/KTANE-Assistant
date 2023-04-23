@@ -58,7 +58,7 @@ namespace KTANE.Game
         {
             get
             {
-                Choices batteryChoices = new (new string[] { "none", "0", "1", "2", "more than 2", "3", "4", "5", "6" });
+                Choices batteryChoices = new (new string[] { "0", "1", "2", "more than 2", "3", "4", "5", "6" });
                 Choices trueOrFalse = new (this.truthyChoices.Keys.ToArray());
                 Choices oddEven = new (new string[] { "odd", "even" });
 
