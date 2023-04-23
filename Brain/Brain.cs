@@ -52,6 +52,11 @@ namespace KTANE.Brain
                 return this.ProcessModule(command, bomb);
             }
 
+            if (command.StartsWith("bomb"))
+            {
+                this.ResetProcessors();
+            }
+
             return this.processors[result.Grammar.Name].Process(command, bomb);
         }
 
