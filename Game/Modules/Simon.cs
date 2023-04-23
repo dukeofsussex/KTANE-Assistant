@@ -1,6 +1,7 @@
 namespace KTANE.Game.Modules
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Speech.Recognition;
     using System.Text;
     using KTANE.Game;
@@ -84,17 +85,11 @@ namespace KTANE.Game.Modules
         {
             this.sequence.Add(command);
 
-            StringBuilder buttonsToPress = new ();
             Dictionary<string, string> targetDict = bomb.HasVowel.Value
                 ? this.vowel[bomb.Strikes]
                 : this.noVowel[bomb.Strikes];
 
-            foreach (string s in this.sequence)
-            {
-                _ = buttonsToPress.Append($"{targetDict[s]}, ");
-            }
-
-            return $"Press {buttonsToPress}.";
+            return $"Press {string.Join(", ", this.sequence.Select(s => targetDict[s]))}.";
         }
     }
 }

@@ -147,7 +147,7 @@ namespace KTANE.Game.Modules
             }
 
             this.stage++;
-            return $"Press {numberToPress}, " + (this.stage != 6 ? $"stage {this.stage}" : "done");
+            return $"Press {numberToPress}, {(this.stage != 6 ? $"stage {this.stage}" : "done")}.";
         }
     }
 }
