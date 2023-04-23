@@ -79,6 +79,7 @@ namespace KTANE.Game.Modules
             }
         }
 
+        [RequiredBombSetting(nameof(Bomb.HasVowel))]
         public override string Process(string command, Bomb bomb)
         {
             this.sequence.Add(command);
