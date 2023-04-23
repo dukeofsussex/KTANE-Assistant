@@ -17,13 +17,13 @@ An assistant to help you defuse modules for the game [Keep Talking and Nobody Ex
 + Streamline input grammar
 + Speed up the input of some modules
 
-## Initializing the Bomb's Properties
+## Initializing Bomb Settings
 
-Before defusing any module, you must first configure the bomb state. The properties that matter are:
+Some modules require additional properties to be set before they can be defused. The properties that matter are:
 
 | Property                            | Voice Command                                                       |
 |-------------------------------------|---------------------------------------------------------------------|
-| Number of batteries                 | Set batteries <0-6 \| none \| more than two>                        |
+| Number of batteries                 | Set batteries <0-6 \| more than two>                                |
 | CAR indicator                       | Set car <yes \| no \| true \| false \| lit \| unlit \| on \| off>   |
 | FRK indicator                       | Set freak <yes \| no \| true \| false \| lit \| unlit \| on \| off> |
 | Parallel port                       | Set port <yes \| no \| true \| false \| lit \| unlit \| on \| off>  |
@@ -37,8 +37,7 @@ These properties can be changed at any time once the assistant has been set up a
 | Strikes                             | Set strikes <0-2> |
 
 You can also skip this section if you want, by clicking the **"Random Bomb"** button.
-This button will initialize a bomb with completely random properties.
-This is likely to be useful, if you want to disarm a module that has nothing to do with the bomb's properties (e.g. Keypad or Memory).
+This button will initialize a bomb with completely random properties and is useful to quickly initialise a bomb when experimenting with modules.
 
 ## Modules
 
